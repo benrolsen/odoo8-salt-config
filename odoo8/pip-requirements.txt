@@ -1,5 +1,4 @@
 gdata
-PyChart
 pydot
 pyparsing
 pyPdf
@@ -7,4 +6,3 @@ vatnumber
 vobject
 PyWebDAV
 xlwt
-ZSI

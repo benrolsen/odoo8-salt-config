@@ -1,3 +1,10 @@
+nginx-repo:
+  pkgrepo.managed:
+    - humanname: nginx repo
+    - baseurl: http://nginx.org/packages/centos/$releasever/$basearch/
+    - enabled: 1
+    - gpgcheck: 0
+
 odoo-system-packages:
   pkg.installed:
     - pkgs:
@@ -42,7 +49,7 @@ pip-packages:
 
 /etc/nginx/conf.d/default.conf:
   file.managed:
-    - source: salt://odoo8/nginx-default.conf
+    - source: salt://odoo8/nginx-default-conf
 
 nginx:
   service.running
