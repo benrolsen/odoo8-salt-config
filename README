@@ -1,0 +1,19 @@
+This repo contains Salt Masterless files to quickly set up an Odoo 8.0 environment. Ideally, both Ubuntu 14.04
+and CentOS 7 should be supported.
+
+To get started on a new VM, first install git:
+(Ubuntu) apt-get install git
+(CentOS) yum install git
+
+Do the same for salt-minion if available. For CentOS 7, you'll need to install the EPEL:
+rpm -Uvh http://archive.linux.duke.edu/pub/epel/beta/7/x86_64/epel-release-7-0.2.noarch.rpm
+
+Download this repo to /srv/salt on the VM:
+cd /srv/salt
+git clone https://gitlab.imsar.us/ben.olsen/odoo-salt-config.git .
+
+Copy the minion conf file to the appropriate place:
+cp minion-conf /etc/salt/minion.d/odoo-minion.conf
+
+Tell Salt to run all configurations:
+salt-call --local state.highstate

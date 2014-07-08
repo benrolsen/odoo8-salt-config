@@ -1,0 +1,90 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides: openerp-server
+# Required-Start: $remote_fs $syslog
+# Required-Stop: $remote_fs $syslog
+# Should-Start: $network
+# Should-Stop:$network
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Enterprise Resource Management software
+# Description: Open ERP is a complete ERP and CRM software.
+### END INIT INFO
+PATH=/bin:/sbin:/usr/bin
+DAEMON=/opt/odoo/openerp-server
+NAME=odoo-server
+DESC=odoo-server
+# Specify the user name (Default: odoo).
+USER=odoo
+# Specify an alternate config file (Default: /etc/odoo-server.conf).
+CONFIGFILE="/etc/odoo/odoo-server.conf"
+# pidfile
+PIDFILE=/opt/odoo/run/$NAME.pid
+# Additional options that are passed to the Daemon.
+DAEMON_OPTS="-c $CONFIGFILE"
+[ -x $DAEMON ] || exit 0
+[ -f $CONFIGFILE ] || exit 0
+checkpid() {
+	[ -f $PIDFILE ] || return 1
+	pid=`cat $PIDFILE`
+	[ -d /proc/$pid ] && return 0
+	return 1
+}
+
+
+start_service() {
+	echo -n "Starting ${DESC}: "
+	start-stop-daemon --start --quiet --pidfile ${PIDFILE} --chuid ${USER} \
+		--background --make-pidfile --exec ${DAEMON} -- ${DAEMON_OPTS}
+	chown ${USER} ${PIDFILE}
+	echo "running"
+}
+
+stop_service() {
+	echo -n "Stopping ${DESC}: "
+	start-stop-daemon --stop --quiet --pidfile ${PIDFILE} -R 10
+	e=$?
+	if [ $e -eq 1 ]; then
+		echo "${DESC} is not running"
+		return
+	fi
+	rm -f ${PIDFILE}
+	echo "stopped"
+}
+
+status_service() {
+	if [ -f ${PIDFILE} ]; then
+		PID=`cat ${PIDFILE}`
+		if [ -z "`ps axf | grep ${PID} | grep -v grep`" ]; then
+			printf "%s\n" "Process dead but pidfile exists. Removing stale pidfile."
+			rm -f ${PIDFILE}
+			exit 1
+		else
+			echo "${DESC} is running"
+		fi
+	else
+		printf "%s\n" "${DESC} is not running"
+		exit 3
+	fi
+}
+
+case "${1}" in
+	status)
+		status_service
+		;;
+	start)
+		start_service
+		;;
+	stop)
+		stop_service
+		;;
+	restart)
+		stop_service
+		start_service
+		;;
+	*)
+		echo "Usage: ${NAME} {start|stop|restart|status}">&2
+		exit 1
+		;;
+esac
+exit 0
