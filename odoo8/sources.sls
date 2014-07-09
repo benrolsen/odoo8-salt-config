@@ -1,11 +1,13 @@
-odoo-sources:
-  cmd.run:
-    - name: git clone git@github.com:odoo/odoo.git /opt/odoo
+https://github.com/odoo/odoo.git:
+  git latest:
+    - rev: 8.0
     - user: odoo
-    - unless: test -d /opt/odoo
+    - target: /opt/odoo
+    - force: True
 
-custom-addons-sources:
-  cmd.run:
-    - name: git clone git@github.com:benrolsen/openerp-custom-addons.git /opt/odoo-custom-addons
+https://github.com/benrolsen/openerp-custom-addons.git:
+  git latest:
+    - rev: master
     - user: odoo
-    - unless: test -d /opt/odoo
+    - target: /opt/odoo-custom-addons
+    - force: True

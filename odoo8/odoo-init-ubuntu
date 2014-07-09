@@ -19,7 +19,7 @@ USER=odoo
 # Specify an alternate config file (Default: /etc/odoo-server.conf).
 CONFIGFILE="/etc/odoo/odoo-server.conf"
 # pidfile
-PIDFILE=/opt/odoo/run/$NAME.pid
+PIDFILE=/opt/run/$NAME.pid
 # Additional options that are passed to the Daemon.
 DAEMON_OPTS="-c $CONFIGFILE"
 [ -x $DAEMON ] || exit 0

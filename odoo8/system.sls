@@ -23,13 +23,13 @@ openerp-user:
     - group: odoo
     - dir_mode: 755
 
-/opt/odoo/test-addons:
+/opt/odoo-test-addons:
   file.directory:
     - user: odoo
     - group: odoo
     - dir_mode: 755
 
-/opt/odoo/run:
+/opt/run:
   file.directory:
     - user: odoo
     - group: odoo
@@ -43,3 +43,5 @@ openerp-user:
 /etc/odoo/odoo-server.conf:
   file.managed:
     - source: salt://odoo8/odoo-server.conf
+    - mode: 755
+    - makedirs: True

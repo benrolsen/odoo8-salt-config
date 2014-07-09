@@ -1,17 +1,18 @@
-nginx-repo:
-  pkgrepo.managed:
-    - humanname: nginx repo
-    - baseurl: http://nginx.org/packages/centos/$releasever/$basearch/
-    - enabled: 1
-    - gpgcheck: 0
+#nginx-repo:
+#  pkgrepo.managed:
+#    - humanname: nginx repo
+#    - baseurl: http://nginx.org/packages/centos/$releasever/$basearch/
+#    - enabled: 1
+#    - gpgcheck: 0
 
 odoo-system-packages:
   pkg.installed:
     - pkgs:
       - gcc
       - git
-      - nginx
+#      - nginx
       - poppler-utils
+      - wkhtmltopdf
 
 odoo-python-packages:
   pkg.installed:
@@ -45,7 +46,7 @@ odoo-python-packages:
 
 pip-packages:
   pip.installed:
-    - requirements: salt://odoo8/pip-requirements.txt
+    - requirements: salt://odoo8/pip-centos7.txt
 
 /etc/nginx/conf.d/default.conf:
   file.managed:
