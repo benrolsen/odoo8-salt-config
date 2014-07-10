@@ -35,9 +35,9 @@ openerp-user:
     - group: odoo
     - dir_mode: 755
 
-/etc/init.d/odoo-server:
+/lib/systemd/system/odoo-server.service:
   file.managed:
-    - source: salt://odoo8/odoo-init-ubuntu
+    - source: salt://odoo8/odoo-systemd-centos7
     - mode: 755
 
 /etc/odoo/odoo-server.conf:
