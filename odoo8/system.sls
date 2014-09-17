@@ -7,7 +7,7 @@ odoo-user:
     - shell: /bin/bash
     - home: /opt/odoo
     - createhome: True
-    - password: $6$MZu1Cwl1ZuFquSCL$1dxztdgc9kpuWIXFi1NkCOTX3KhdvTP7M7f8O2L01g8ah8NiD9L41JUxOWfapGhRM487nFGQldWU6USs/opFa/
+    - password: $6$5af6yZEY$LRGrOTvoHza517KRPKt/Akrx1AiKLNH.PlJI64YxhydGG4gYbhlCJWSYo401bcudTeYfXOS.zyw0nv45UHyg4.
     - groups:
       - odoo
 

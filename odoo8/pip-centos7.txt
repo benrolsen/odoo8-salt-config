@@ -1,7 +1,9 @@
 gdata
+openerp-web-kanban
 pydot
 pyPdf
+PyWebDAV
 vatnumber
 vobject
-PyWebDAV
 xlwt
+http://download.gna.org/pychart/PyChart-1.39.tar.gz

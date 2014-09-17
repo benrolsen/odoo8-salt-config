@@ -12,6 +12,11 @@ postgresql-setup initdb:
     - require:
       - pkg: odoo-database-packages
 
+/var/lib/pgsql/data/pg_hba.conf:
+  file.managed:
+    - source: salt://odoo8/pg_hba.conf
+    - mode: 600
+
 postgresql:
   service.running:
     - enable: True
