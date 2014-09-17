@@ -5,6 +5,7 @@ odoo-system-packages:
       - git
       - nginx
       - poppler-utils
+      - wkhtmltopdf
 
 odoo-python-packages:
   pkg.installed:

@@ -18,3 +18,20 @@ cp minion-conf /etc/salt/minion.d/odoo-minion.conf
 
 Tell Salt to run all configurations:
 salt-call --local state.highstate
+
+Start the Odoo server on CentOS 7:
+systemctl start odoo-server
+
+To update the odoo code, first change to the odoo user:
+su - odoo
+Then update the odoo and odoo-custom-addons code bases:
+cd /opt/dooo
+git pull
+cd /opt/odoo-custom-addons
+git pull
+
+You'll need to stop the odoo-server service and manually reload all the DB data from files:
+(as root) systemctl stop odoo-server
+(as odoo) /opt/odoo/openerp-server -c /etc/odoo/odoo-server.conf -u all
+Make sure to load a page so the reload happens, and then kill the manual process
+(as root) systemctl start odoo-server
