@@ -6,7 +6,7 @@ To get started on a new VM, first install git:
 (CentOS) yum install git
 
 Do the same for salt-minion if available. For CentOS 7, you'll need to install the EPEL:
-rpm -Uvh http://archive.linux.duke.edu/pub/epel/beta/7/x86_64/epel-release-7-0.2.noarch.rpm
+yum install epel-release
 
 Download this repo to /srv/salt on the VM:
 cd /srv/salt
@@ -25,13 +25,13 @@ systemctl start odoo-server
 To update the odoo code, first change to the odoo user:
 su - odoo
 Then update the odoo and odoo-custom-addons code bases:
-cd /opt/dooo
+cd /opt/odoo/odoo
 git pull
-cd /opt/odoo-custom-addons
+cd /opt/odoo/odoo-custom-addons
 git pull
 
 You'll need to stop the odoo-server service and manually reload all the DB data from files:
 (as root) systemctl stop odoo-server
-(as odoo) /opt/odoo/openerp-server -c /etc/odoo/odoo-server.conf -u all
+(as odoo) /opt/odoo/odoo/openerp-server -c /etc/odoo/odoo/odoo-server.conf -u all
 Make sure to load a page so the reload happens, and then kill the manual process
 (as root) systemctl start odoo-server

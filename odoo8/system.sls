@@ -1,4 +1,4 @@
-openerp-user:
+odoo-user:
   group.present:
     - name: odoo
   user.present:
@@ -17,13 +17,13 @@ openerp-user:
     - group: odoo
     - dir_mode: 755
 
-/opt/odoo-custom-addons:
+/opt/odoo/odoo-custom-addons:
   file.directory:
     - user: odoo
     - group: odoo
     - dir_mode: 755
 
-/opt/odoo-test-addons:
+/opt/odoo/odoo-test-addons:
   file.directory:
     - user: odoo
     - group: odoo

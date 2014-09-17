@@ -1,6 +1,5 @@
 gdata
 pydot
-pyparsing
 pyPdf
 vatnumber
 vobject
