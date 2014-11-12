@@ -5,13 +5,16 @@ odoo-system-packages:
       - git
       - nginx
       - poppler-utils
+      - wget
       - wkhtmltopdf
+      - xorg-x11-server-Xvfb
 
 odoo-python-packages:
   pkg.installed:
     - pkgs:
       - graphviz-python
       - libxslt-python
+      - pychart
       - pyparsing
       - python-babel
       - python-dateutil
