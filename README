@@ -3,13 +3,15 @@ Only CentOS 7 is supported.
 
 First install the EPEL and do a system update:
 yum install -y epel-release
+PostgreSQL 9.3 has enough improvements that it's worth getting. This adds the official repo:
+rpm -iUvh http://yum.postgresql.org/9.3/redhat/rhel-7-x86_64/pgdg-centos93-9.3-1.noarch.rpm
 yum update
 
 To get started on a new VM, first install git and salt-minion:
 yum install -y git salt-minion
 
 Download this repo to /srv/salt on the VM:
-cd /srv/salt
+mkdir /srv/salt; cd /srv/salt
 git clone https://github.com/benrolsen/odoo8-salt-config.git .
 
 Copy the minion conf file to the appropriate place:
@@ -17,7 +19,12 @@ mkdir /etc/salt/minion.d
 cp minion-conf /etc/salt/minion.d/odoo-minion.conf
 
 Tell Salt to run all configurations:
-salt-call --local state.highstate
+salt-call --local state.highstate > hightstate.log
+
+May need to do this to fix nginx:
+cp /etc/nginx/nginx.conf.default /etc/nginx/nginx.conf
+nginx is getting a permission denied when connecting to upstream:
+set disabled /etc/selinux/config
 
 Go back to /root and download a nightly Odoo RPM from:
 http://nightly.odoo.com/8.0/nightly/rpm/

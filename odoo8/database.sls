@@ -1,36 +1,39 @@
 odoo-database-packages:
   pkg.installed:
     - pkgs:
-      - postgresql-server
-      - postgresql-devel
-      - postgresql-contrib
+      - postgresql93-server
+      - postgresql93-devel
+      - postgresql93-contrib
       - python-psycopg2
 
-postgresql-setup initdb:
+/usr/pgsql-9.3/bin/postgresql93-setup initdb:
   cmd.run:
-    - unless: test -f /var/lib/pgsql/data/PG_VERSION
+    - unless: test -f /var/lib/pgsql/9.3/data/PG_VERSION
     - require:
       - pkg: odoo-database-packages
 
-/var/lib/pgsql/data/pg_hba.conf:
+/var/lib/pgsql/9.3/data/pg_hba.conf:
   file.managed:
     - source: salt://odoo8/pg_hba.conf
     - mode: 600
 
-postgresql:
+/var/lib/pgsql/9.3/data/postgresql.conf:
+  file.managed:
+    - source: salt://odoo8/postgresql.conf
+    - mode: 600
+
+postgresql-9.3:
   service.running:
     - enable: True
-    - watch:
-      - file: /var/lib/pgsql/data/pg_hba.conf
 
-odoo:
+postgresql-odoo:
   postgres_user.present:
     - createdb: True
     - superuser: True
     - password: odoo
     - require:
-      - service: postgresql
+      - service: postgresql-9.3
   postgres_database.present:
     - owner: odoo
     - require:
-      - service: postgresql
+      - service: postgresql-9.3

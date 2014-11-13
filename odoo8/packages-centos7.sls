@@ -1,12 +1,15 @@
 odoo-system-packages:
   pkg.installed:
     - pkgs:
+      - babel
       - gcc
       - git
       - nginx
       - poppler-utils
+      - vim
       - wget
       - wkhtmltopdf
+      - postgresql
       - xorg-x11-server-Xvfb
 
 odoo-python-packages:
@@ -34,10 +37,12 @@ odoo-python-packages:
       - python-pillow
       - python-pip
       - python-psutil
+      - python-psycopg2
       - python-reportlab
       - python-requests
       - python-simplejson
       - python-unittest2
+      - python-vobject
       - python-werkzeug
       - pytz
       - PyYAML
@@ -46,9 +51,14 @@ pip-packages:
   pip.installed:
     - requirements: salt://odoo8/pip-centos7.txt
 
-/etc/nginx/conf.d/default.conf:
+/etc/nginx/nginx.conf:
   file.managed:
     - source: salt://odoo8/nginx-default-conf
 
 nginx:
   service.running
+    - enable: True
+
+firewalld:
+  service.dead:
+    - enable: False

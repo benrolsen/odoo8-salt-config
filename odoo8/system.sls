@@ -41,6 +41,7 @@ odoo-user:
 
 xvfbd:
   service.running
+    - enable: True
 
 /etc/odoo/odoo-server.conf:
   file.managed:
