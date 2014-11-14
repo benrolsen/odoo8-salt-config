@@ -3,5 +3,5 @@ common-system-packages:
     - pkgs:
       - gcc
       - git
-      - vim
+      - vim-enhanced
       - wget

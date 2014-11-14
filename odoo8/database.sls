@@ -26,7 +26,7 @@ postgresql-9.3:
   service.running:
     - enable: True
 
-postgresql-odoo:
+odoo:
   postgres_user.present:
     - createdb: True
     - superuser: True

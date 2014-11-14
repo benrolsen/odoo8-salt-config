@@ -15,7 +15,7 @@ mkdir /srv/salt; cd /srv/salt
 git clone https://github.com/benrolsen/odoo8-salt-config.git .
 
 Copy the minion conf file to the appropriate place:
-mkdir /etc/salt/minion.d
+mkdir -p /etc/salt/minion.d
 cp minion-conf /etc/salt/minion.d/odoo-minion.conf
 
 Tell Salt to run all configurations:
