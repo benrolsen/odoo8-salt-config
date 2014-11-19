@@ -9,11 +9,11 @@ base:
     - odoo8.test-config
     - odoo8.sources
 
-  'minerva':
+  'minerva.imsar.us':
     - odoo8.database
     - odoo8.minerva-config
 
-  'eowyn':
+  'eowyn.imsar.us':
     - odoo8.packages-centos7
     - odoo8.system
     - odoo8.eowyn-config
