@@ -6,7 +6,7 @@ odoo-system-packages:
       - git
       - nginx
       - poppler-utils
-      - vim
+      - vim-enhanced
       - wget
       - wkhtmltopdf
       - xorg-x11-server-Xvfb
@@ -50,14 +50,3 @@ pip-packages:
   pip.installed:
     - requirements: salt://odoo8/pip-centos7.txt
 
-/etc/nginx/conf.d/odoo.conf:
-  file.managed:
-    - source: salt://odoo8/nginx-default-conf
-
-nginx:
-  service.running
-    - enable: True
-
-firewalld:
-  service.dead:
-    - enable: False

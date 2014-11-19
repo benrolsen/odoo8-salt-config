@@ -8,13 +8,16 @@ common-system-packages:
 
 /root/.bashrc:
   file.managed:
-    - source: salt://odoo8/bashrc
+    - source: salt://common-files/bashrc
 
 /root/.vimrc:
   file.managed:
-    - source: salt://odoo8/vimrc
+    - source: salt://common-files/vimrc
 
 /etc/selinux/config:
   file.managed:
-    - source: salt://odoo8/selinux.config
+    - source: salt://common-files/selinux.config
 
+firewalld:
+  service.dead:
+    - enable: False

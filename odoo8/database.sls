@@ -12,16 +12,6 @@ odoo-database-packages:
     - require:
       - pkg: odoo-database-packages
 
-/var/lib/pgsql/9.3/data/pg_hba.conf:
-  file.managed:
-    - source: salt://odoo8/pg_hba.conf
-    - mode: 600
-
-/var/lib/pgsql/9.3/data/postgresql.conf:
-  file.managed:
-    - source: salt://odoo8/postgresql.conf
-    - mode: 600
-
 postgresql-9.3:
   service.running:
     - enable: True

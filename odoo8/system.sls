@@ -13,8 +13,12 @@ odoo-user:
 
 /lib/systemd/system/odoo-server.service:
   file.managed:
-    - source: salt://odoo8/odoo-systemd-centos7
+    - source: salt://odoo8/odoo-server.service
     - mode: 755
+
+odoo-server:
+  service.running:
+    - enable: True
 
 /lib/systemd/system/xvfbd.service:
   file.managed:
@@ -22,12 +26,10 @@ odoo-user:
     - mode: 755
 
 xvfbd:
-  service.running
+  service.running:
     - enable: True
 
-/etc/odoo/odoo-server.conf:
-  file.managed:
-    - source: salt://odoo8/odoo-server.conf
-    - mode: 755
-    - makedirs: True
+nginx:
+  service.running:
+    - enable: True
 
