@@ -20,7 +20,7 @@ odoo:
   postgres_user.present:
     - createdb: True
     - superuser: True
-    - password: odoo
+    - password: hydrophobia
     - require:
       - service: postgresql-9.3
   postgres_database.present:
