@@ -8,15 +8,15 @@ common-system-packages:
 
 /root/.bashrc:
   file.managed:
-    - source: salt://common-files/bashrc
+    - source: salt://common/bashrc
 
 /root/.vimrc:
   file.managed:
-    - source: salt://common-files/vimrc
+    - source: salt://common/vimrc
 
 /etc/selinux/config:
   file.managed:
-    - source: salt://common-files/selinux.config
+    - source: salt://common/selinux.config
 
 firewalld:
   service.dead:

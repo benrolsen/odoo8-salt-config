@@ -11,7 +11,7 @@ To get started on a new VM, first install git and salt-minion:
 yum install -y git salt-minion
 
 Download this repo to /srv/salt on the VM:
-mkdir /srv/salt; cd /srv/salt
+mkdir -p /srv/salt; cd /srv/salt
 git clone https://github.com/benrolsen/odoo8-salt-config.git .
 
 Copy the minion conf file to the appropriate place:
