@@ -3,10 +3,10 @@ upstream odoo {
     server 127.0.0.1:8069;
 }
 
-## http site##
+## Odoo on http port 80 ##
 server {
-    listen      80 default_server;
-    server_name _;
+    listen      80;
+    server_name odoo_web.imsar.us;
     client_max_body_size 10M;
 
     # log files

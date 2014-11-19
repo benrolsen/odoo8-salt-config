@@ -11,3 +11,10 @@ https://github.com/benrolsen/openerp-custom-addons.git:
     - user: odoo
     - target: /home/odoo/openerp-custom-addons
     - force: True
+
+https://github.com/OCA/web.git:
+  git.latest:
+    - rev: 8.0
+    - user: odoo
+    - target: /home/odoo/oca/web
+    - force: True

@@ -11,24 +11,6 @@ odoo-user:
     - groups:
       - odoo
 
-#/var/log/odoo:
-#  file.directory:
-#    - user: odoo
-#    - group: odoo
-#    - dir_mode: 755
-#
-#/opt/odoo/odoo-custom-addons:
-#  file.directory:
-#    - user: odoo
-#    - group: odoo
-#    - dir_mode: 755
-#
-#/opt/run:
-#  file.directory:
-#    - user: odoo
-#    - group: odoo
-#    - dir_mode: 755
-
 /lib/systemd/system/odoo-server.service:
   file.managed:
     - source: salt://odoo8/odoo-systemd-centos7

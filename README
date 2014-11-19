@@ -21,10 +21,13 @@ cp minion-conf /etc/salt/minion.d/odoo-minion.conf
 Tell Salt to run all configurations:
 salt-call --local state.highstate > hightstate.log
 
+
+*** On the DB server ***
+Remember to disable selinux (on both, actually) and open port 5432 in firewalld for postgres access
+
+*** On the web server ***
 May need to do this to fix nginx:
-cp /etc/nginx/nginx.conf.default /etc/nginx/nginx.conf
-nginx is getting a permission denied when connecting to upstream:
-set disabled /etc/selinux/config
+http://stackoverflow.com/questions/13895933/nginx-getting-error-with-specific-domain-name
 
 Go back to /root and download a nightly Odoo RPM from:
 http://nightly.odoo.com/8.0/nightly/rpm/

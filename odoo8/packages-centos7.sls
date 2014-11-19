@@ -9,7 +9,6 @@ odoo-system-packages:
       - vim
       - wget
       - wkhtmltopdf
-      - postgresql
       - xorg-x11-server-Xvfb
 
 odoo-python-packages:
@@ -51,7 +50,7 @@ pip-packages:
   pip.installed:
     - requirements: salt://odoo8/pip-centos7.txt
 
-/etc/nginx/nginx.conf:
+/etc/nginx/conf.d/odoo.conf:
   file.managed:
     - source: salt://odoo8/nginx-default-conf
 
