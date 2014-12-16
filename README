@@ -24,7 +24,7 @@ mkdir -p /etc/salt/minion.d
 cp minion-conf /etc/salt/minion.d/odoo-minion.conf
 
 Tell Salt to run all configurations:
-salt-call -l warning state.highstate > hightstate.log
+salt-call -l warning state.highstate > /tmp/hightstate.log
 
 
 *** On the web server ***

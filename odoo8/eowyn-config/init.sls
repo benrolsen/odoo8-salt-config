@@ -7,3 +7,9 @@
 /etc/nginx/conf.d/odoo.conf:
   file.managed:
     - source: salt://odoo8/eowyn-config/nginx-odoo.conf
+
+/etc/logrotate.d/odoo:
+  file.managed:
+    - source: salt://odoo8/minerva-config/logrotate_odoo
+    - mode: 644
+
