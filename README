@@ -5,6 +5,11 @@ First install the EPEL and do a system update:
 yum install -y epel-release
 PostgreSQL 9.3 has enough improvements that it's worth getting. This adds the official repo:
 rpm -iUvh http://yum.postgresql.org/9.3/redhat/rhel-7-x86_64/pgdg-centos93-9.3-1.noarch.rpm
+
+Install the Odoo Redhat repo:
+yum-config-manager --add-repo=https://nightly.odoo.com/8.0/nightly/rpm/odoo.repo
+
+And update:
 yum update
 
 To get started on a new VM, first install git and salt-minion:
@@ -26,28 +31,25 @@ salt-call -l warning state.highstate > hightstate.log
 May need to do this to fix nginx:
 http://stackoverflow.com/questions/13895933/nginx-getting-error-with-specific-domain-name
 
-Go back to /root and download a nightly Odoo RPM from:
-http://nightly.odoo.com/8.0/nightly/rpm/
-You can use latest, but that makes it harder to tell which RPM we're running
-wget http://nightly.odoo.com/8.0/nightly/rpm/odoo_8.0-latest.noarch.rpm
-wget http://nightly.odoo.com/8.0/nightly/rpm/odoo_8.0-20141112-010204.noarch.rpm
-
 Install the Odoo RPM:
-rpm -Uvh odoo_8.0-latest.noarch.rpm
+yum install odoo
 
 Start the Odoo server on CentOS 7:
 systemctl start odoo-server
 
 
-To update the odoo code, first change to the odoo user:
+To update the odoo code, yum upgrade:
+yum update odoo
+
+And then change to the odoo user for the custom addons:
 su - odoo
-Download a new RPM and upgrade (or downgrade) it with the same steps as above.
-Then update the odoo-custom-addons code bases:
 cd /home/odoo/openerp-custom-addons
 git pull
 
 You'll need to stop the odoo-server service and manually reload all the DB data from files:
 (as root) systemctl stop odoo-server
-(as odoo) /opt/odoo/odoo/openerp-server -c /etc/odoo/odoo-server.conf -u all
+(as odoo) openerp-server -d <dbname> -u all -c /etc/odoo/odoo-server-single.conf --stop-after-init
+openerp-server -d test1 -u imsar_auth_ldap -c /etc/odoo/odoo-server-single.conf
+openerp-server -c /etc/odoo/odoo-server-single.conf
 Make sure to load a page so the reload happens, and then kill the manual process:
 (as root) systemctl start odoo-server
