@@ -10,6 +10,6 @@
 
 /etc/logrotate.d/odoo:
   file.managed:
-    - source: salt://odoo8/minerva-config/logrotate_odoo
+    - source: salt://odoo8/eowyn-config/logrotate_odoo
     - mode: 644
 

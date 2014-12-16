@@ -1,0 +1,4 @@
+#!/bin/bash
+DATE=$(date +%Y%m%d)
+OUTPUT=/var/lib/pgsql/9.3/backups/imsar_prod_$DATE.custom
+/bin/pg_dump -Fc imsar_prod -f $OUTPUT
