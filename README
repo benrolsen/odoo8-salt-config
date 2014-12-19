@@ -48,8 +48,8 @@ git pull
 
 You'll need to stop the odoo-server service and manually reload all the DB data from files:
 (as root) systemctl stop odoo-server
-(as odoo) openerp-server -d <dbname> -u all -c /etc/odoo/odoo-server-single.conf --stop-after-init
-openerp-server -d test1 -u imsar_auth_ldap -c /etc/odoo/odoo-server-single.conf
+(as odoo) openerp-server -d imsar_prod -u all -c /etc/odoo/odoo-server-single.conf --stop-after-init
+openerp-server -d imsar_prod -u imsar_timekeeping -c /etc/odoo/odoo-server-single.conf --stop-after-init
 openerp-server -c /etc/odoo/odoo-server-single.conf
 Make sure to load a page so the reload happens, and then kill the manual process:
 (as root) systemctl start odoo-server

@@ -4,4 +4,7 @@
     rotate 30
     compress
     notifempty
+    postrotate
+         /usr/bin/systemctl restart odoo-server 2>/dev/null || true
+    endscript
 }
